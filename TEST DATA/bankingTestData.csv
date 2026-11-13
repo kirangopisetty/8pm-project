@@ -1,0 +1,5 @@
+varUserAgent,varUN,varPWD,varAcctID,varStartDate,varEndDate,varFromAcct,varToAcct,varTransferAmt,varName,varEmail,varSubject,varMsg
+"Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.80 Mobile Safari/537.36",jsmith,demo1234,800002,2026-11-02,2026-11-03,800002,800003,1,Sandeep,s@gmail.com,HomeLoan,I'm interested in home loan
+"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36 Edg/156.0.4314.58",jsmith,demo1234,800003,2026-11-03,2026-11-04,800003,800019,2,Kavitha,k@gmail.com,PersonalLoan,What is the rate of interest
+Mozilla/5.0 (X11; Linux i686; rv:159.0) Gecko/20100101 Firefox/159.0,jsmith,demo1234,800014,2026-11-04,2026-11-05,800014,800002,3,Maithilli,m@gmail.com,MutualFunds,Do you support here
+"Mozilla/5.0 (Macintosh; Intel Mac OS X 15_8_2) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.0 Safari/605.1.15",jsmith,demo1234,800019,2026-11-01,2026-11-05,800019,800014,4,Kiran,k@gmail.com,Bonds,How can I sell

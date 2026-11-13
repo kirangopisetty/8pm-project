@@ -1,0 +1,2507 @@
+{
+  "info": {
+    "_postman_id": "2e0c29ec-c7f1-4175-a09a-a6fb0587c644",
+    "name": "E2E API AUTOMATION TESTING",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "5040522",
+    "_collection_link": "https://go.postman.co/collection/5040522-2e0c29ec-c7f1-4175-a09a-a6fb0587c644?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "NEGATIVE TESTING",
+      "item": [
+        {
+          "name": "UNSUPPORTED HTTP METHODS TESTING",
+          "item": [
+            {
+              "name": "Login",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Verify if response code is 405\", function () {\r\n    pm.response.to.have.status(405);\r\n});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "User-Agent",
+                    "value": "{{$randomUserAgent}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"jsmith\",\n  \"password\": \"demo1234\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://demo.testfire.net/api/login",
+                  "protocol": "http",
+                  "host": [
+                    "demo",
+                    "testfire",
+                    "net"
+                  ],
+                  "path": [
+                    "api",
+                    "login"
+                  ]
+                },
+                "description": "After a successful login a token is returned. This is a Bearer token. To authenticate with it use the Authorization header and set value to Bearer empty space and the token value."
+              },
+              "response": [
+                {
+                  "name": "Success message when login is complete",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"jsmith\",\n  \"password\": \"demo1234\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/login",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "login"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "Bad parameters: Please check provided values",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"jsmith\",\n  \"password\": \"demo1234\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/login",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "login"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "Internal server error: Please see error message or logs for details",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"jsmith\",\n  \"password\": \"demo1234\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/login",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "login"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            },
+            {
+              "name": "get Account",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Verify if response code=405\", function () {\r\n    pm.response.to.have.status(405);\r\n});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "User-Agent",
+                    "value": "{{$randomUserAgent}}"
+                  }
+                ],
+                "url": {
+                  "raw": "http://demo.testfire.net/api/account",
+                  "protocol": "http",
+                  "host": [
+                    "demo",
+                    "testfire",
+                    "net"
+                  ],
+                  "path": [
+                    "api",
+                    "account"
+                  ]
+                },
+                "description": "Returns a list of all the accounts owned by the user"
+              },
+              "response": [
+                {
+                  "name": "Successful operation",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/account",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "account"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "Unauthorized request",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/account",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "account"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/account",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "account"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            },
+            {
+              "name": "transfer",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Verify if response code=405\", function () {\r\n    pm.response.to.have.status(405);\r\n});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "User-Agent",
+                    "value": "{{$randomUserAgent}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"toAccount\": \"800002\",\n  \"fromAccount\": \"800003\",\n  \"transferAmount\": \"{{$randomInt}}\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://demo.testfire.net/api/transfer",
+                  "protocol": "http",
+                  "host": [
+                    "demo",
+                    "testfire",
+                    "net"
+                  ],
+                  "path": [
+                    "api",
+                    "transfer"
+                  ]
+                },
+                "description": "Transfer money between two accounts"
+              },
+              "response": [
+                {
+                  "name": "Successful operation",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"toAccount\": \"800002\",\n  \"fromAccount\": \"800003\",\n  \"transferAmount\": \"200\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/transfer",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transfer"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "Bad parameters: Please check provided values",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"toAccount\": \"800002\",\n  \"fromAccount\": \"800003\",\n  \"transferAmount\": \"200\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/transfer",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transfer"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"toAccount\": \"800002\",\n  \"fromAccount\": \"800003\",\n  \"transferAmount\": \"200\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/transfer",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transfer"
+                      ]
+                    }
+                  },
+                  "status": "Not Implemented",
+                  "code": 501,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "BROKEN ENDPOINTS TESTING",
+          "item": [
+            {
+              "name": "Check if any user is logged in-Linux+Firefox",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Verify if response code=404\", function () {\r\n    pm.response.to.have.status(404);\r\n});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "User-Agent",
+                    "value": "{{$randomUserAgent}}"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "YW5OdGFYUm86WkdWdGJ6RXlNelE9OnY/P0UtYyw="
+                  }
+                ],
+                "url": {
+                  "raw": "http://demo.testfire.net/api/signin",
+                  "protocol": "http",
+                  "host": [
+                    "demo",
+                    "testfire",
+                    "net"
+                  ],
+                  "path": [
+                    "api",
+                    "signin"
+                  ]
+                },
+                "description": "If a user is loggedin the username will be returned"
+              },
+              "response": [
+                {
+                  "name": "Logged in",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/login",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "login"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "Logged out",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/login",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "login"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            },
+            {
+              "name": "get Account Balance",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Verify if response code=500\", function () {\r\n    pm.response.to.have.status(500);\r\n});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "User-Agent",
+                    "value": "{{$randomUserAgent}}"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "YW5OdGFYUm86WkdWdGJ6RXlNelE9OnY/P0UtYyw="
+                  }
+                ],
+                "url": {
+                  "raw": "http://demo.testfire.net/api/account/8000091",
+                  "protocol": "http",
+                  "host": [
+                    "demo",
+                    "testfire",
+                    "net"
+                  ],
+                  "path": [
+                    "api",
+                    "account",
+                    "8000091"
+                  ]
+                },
+                "description": "Returns details about a specific account"
+              },
+              "response": [
+                {
+                  "name": "Successful operation",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/account/:accountNo",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "account",
+                        ":accountNo"
+                      ],
+                      "variable": [
+                        {
+                          "key": "accountNo",
+                          "value": "string",
+                          "description": "Account id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "Unauthorized request",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/account/:accountNo",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "account",
+                        ":accountNo"
+                      ],
+                      "variable": [
+                        {
+                          "key": "accountNo",
+                          "value": "string",
+                          "description": "Account id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/account/:accountNo",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "account",
+                        ":accountNo"
+                      ],
+                      "variable": [
+                        {
+                          "key": "accountNo",
+                          "value": "string",
+                          "description": "Account id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            },
+            {
+              "name": "send Feedback",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Verify if response code=404\", function () {\r\n    pm.response.to.have.status(404);\r\n});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "User-Agent",
+                    "value": "{{$randomUserAgent}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"{{$randomFirstName}}\",\n  \"email\": \"{{$randomEmail}}\",\n  \"subject\": \"{{$randomWord}}\",\n  \"message\": \"{{$randomLoremSentence}}\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://demo.testfire.net/api/feedback",
+                  "protocol": "http",
+                  "host": [
+                    "demo",
+                    "testfire",
+                    "net"
+                  ],
+                  "path": [
+                    "api",
+                    "feedback"
+                  ]
+                },
+                "description": "Submit feedback for the bank"
+              },
+              "response": [
+                {
+                  "name": "Successful operation",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"J Smith\",\n  \"email\": \"jsmtih@altoromutual.com\",\n  \"subject\": \"Amazing web design\",\n  \"message\": \"I like the new look of your applicaiton\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/feedback/submit",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "feedback",
+                        "submit"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "Unauthorized request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"J Smith\",\n  \"email\": \"jsmtih@altoromutual.com\",\n  \"subject\": \"Amazing web design\",\n  \"message\": \"I like the new look of your applicaiton\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/feedback/submit",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "feedback",
+                        "submit"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"J Smith\",\n  \"email\": \"jsmtih@altoromutual.com\",\n  \"subject\": \"Amazing web design\",\n  \"message\": \"I like the new look of your applicaiton\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/feedback/submit",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "feedback",
+                        "submit"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "PAYLOAD TAMPERING TESTING",
+          "item": [
+            {
+              "name": "get Transactions",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Verify if response code is 500\", function () {\r\n    pm.response.to.have.status(500);\r\n});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "User-Agent",
+                    "value": "{{$randomUserAgent}}"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "YW5OdGFYUm86WkdWdGJ6RXlNelE9Om8cVD8VPz4="
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startDate\": \"11-10-2026\",\n  \"endDate\": \"11-11-2026\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://demo.testfire.net/api/account/800014/transactions",
+                  "protocol": "http",
+                  "host": [
+                    "demo",
+                    "testfire",
+                    "net"
+                  ],
+                  "path": [
+                    "api",
+                    "account",
+                    "800014",
+                    "transactions"
+                  ]
+                },
+                "description": "Return transactions between 2 specific dates"
+              },
+              "response": [
+                {
+                  "name": "Successful operation",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"startDate\": \"2012-03-12\",\n  \"endDate\": \"2012-03-17\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/account/:accountNo/transactions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "account",
+                        ":accountNo",
+                        "transactions"
+                      ],
+                      "variable": [
+                        {
+                          "key": "accountNo",
+                          "value": "string",
+                          "description": "Account id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "Bad parameters: Please check provided values",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"startDate\": \"2012-03-12\",\n  \"endDate\": \"2012-03-17\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/account/:accountNo/transactions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "account",
+                        ":accountNo",
+                        "transactions"
+                      ],
+                      "variable": [
+                        {
+                          "key": "accountNo",
+                          "value": "string",
+                          "description": "Account id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "Unauthorized request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"startDate\": \"2012-03-12\",\n  \"endDate\": \"2012-03-17\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/account/:accountNo/transactions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "account",
+                        ":accountNo",
+                        "transactions"
+                      ],
+                      "variable": [
+                        {
+                          "key": "accountNo",
+                          "value": "string",
+                          "description": "Account id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"startDate\": \"2012-03-12\",\n  \"endDate\": \"2012-03-17\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/account/:accountNo/transactions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "account",
+                        ":accountNo",
+                        "transactions"
+                      ],
+                      "variable": [
+                        {
+                          "key": "accountNo",
+                          "value": "string",
+                          "description": "Account id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Implemented",
+                  "code": 501,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            },
+            {
+              "name": "add User",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Verify if response code is 400\", function () {\r\n    pm.response.to.have.status(400);\r\n});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "User-Agent",
+                    "value": "{{$randomUserAgent}}"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "YW5OdGFYUm86WkdWdGJ6RXlNelE9Om8cVD8VPz4="
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n//  \"firstname\": \"{{$randomFirstName}}\",\n  \"lastname\": \"{{$randomLastName}}\",\n  \"username\": \"{{$randomUserName}}\",\n  \"password1\": \"Tiger@123\",\n  \"password2\": \"Tiger@123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://demo.testfire.net/api/admin/addUser",
+                  "protocol": "http",
+                  "host": [
+                    "demo",
+                    "testfire",
+                    "net"
+                  ],
+                  "path": [
+                    "api",
+                    "admin",
+                    "addUser"
+                  ]
+                },
+                "description": "Add new user"
+              },
+              "response": [
+                {
+                  "name": "Successful operation",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"firstname\": \"Bilbo\",\n  \"lastname\": \"Baggins\",\n  \"username\": \"bilbob\",\n  \"password1\": \"S3l3ctS0methingStr0ng5AsP@ssword\",\n  \"password2\": \"S3l3ctS0methingStr0ng5AsP@ssword\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/addUser",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "addUser"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "Unauthorized request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"firstname\": \"Bilbo\",\n  \"lastname\": \"Baggins\",\n  \"username\": \"bilbob\",\n  \"password1\": \"S3l3ctS0methingStr0ng5AsP@ssword\",\n  \"password2\": \"S3l3ctS0methingStr0ng5AsP@ssword\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/addUser",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "addUser"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "Unauthorized request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"firstname\": \"Bilbo\",\n  \"lastname\": \"Baggins\",\n  \"username\": \"bilbob\",\n  \"password1\": \"S3l3ctS0methingStr0ng5AsP@ssword\",\n  \"password2\": \"S3l3ctS0methingStr0ng5AsP@ssword\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/addUser",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "addUser"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "Error creating user",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"firstname\": \"Bilbo\",\n  \"lastname\": \"Baggins\",\n  \"username\": \"bilbob\",\n  \"password1\": \"S3l3ctS0methingStr0ng5AsP@ssword\",\n  \"password2\": \"S3l3ctS0methingStr0ng5AsP@ssword\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/addUser",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "addUser"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            },
+            {
+              "name": "change Password",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Verify if response code is 500\", function () {\r\n    pm.response.to.have.status(500);\r\n});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "User-Agent",
+                    "value": "{{$randomUserAgent}}"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "YW5OdGFYUm86WkdWdGJ6RXlNelE9Om8cVD8VPz4="
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"jdoe\",\n  \"pwd2\": \"Th1s!sz3nu3Passv0rd\",\n  \"pwd1\": \"Th1s!sz3nu3Passv0rd\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://demo.testfire.net/api/admin/changePassword",
+                  "protocol": "http",
+                  "host": [
+                    "demo",
+                    "testfire",
+                    "net"
+                  ],
+                  "path": [
+                    "api",
+                    "admin",
+                    "changePassword"
+                  ]
+                },
+                "description": "Change user password"
+              },
+              "response": [
+                {
+                  "name": "Successful operation",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"jdoe\",\n  \"password2\": \"Th1s!sz3nu3Passv0rd\",\n  \"password1\": \"Th1s!sz3nu3Passv0rd\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/changePassword",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "changePassword"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "Unauthorized request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"jdoe\",\n  \"password2\": \"Th1s!sz3nu3Passv0rd\",\n  \"password1\": \"Th1s!sz3nu3Passv0rd\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/changePassword",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "changePassword"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "Unauthorized request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"jdoe\",\n  \"password2\": \"Th1s!sz3nu3Passv0rd\",\n  \"password1\": \"Th1s!sz3nu3Passv0rd\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/changePassword",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "changePassword"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "Error in changing the username password",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"jdoe\",\n  \"password2\": \"Th1s!sz3nu3Passv0rd\",\n  \"password1\": \"Th1s!sz3nu3Passv0rd\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/changePassword",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "changePassword"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "POSITIVE TESTING",
+      "item": [
+        {
+          "name": "USER JOURNEY#1",
+          "item": [
+            {
+              "name": "LOGIN",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Verify if response code=200 OK\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Verify if response time is < 2 seconds\", function () {\r\n    pm.expect(pm.response.responseTime).to.be.below(2000);\r\n});\r\n\r\npm.test(\"Verify if response body is received from server i.e., non-empty\", function () {\r\n    pm.response.to.have.body();\r\n});\r\n\r\npm.test(\"Verify if response body is in JSON format\", function () {\r\n    pm.response.to.have.header(\"Content-Type\", \"application/json\");\r\n});\r\n\r\npm.test(\"Verify if response body is valid\", function () {\r\n    pm.expect(pm.response.text()).to.include(\"Authorization\");\r\n    pm.expect(pm.response.text()).to.include(\"success\");\r\n});\r\n\r\npm.test.skip(\"Verify if response headers do not reveal project specific details\", function () {\r\n    pm.response.to.not.have.header(\"Server\");\r\n});\r\n\r\n// API CHAINING TESTING\r\n\r\nvarExtractedResponse = pm.response.json();\r\nvarToken = varExtractedResponse.Authorization;\r\npm.globals.set(\"varGlobalToken\", varToken);\r\n\r\n//OR\r\n// pm.globals.set(\"varGlobalToken\", pm.response.json().Authorization);\r\n\r\n// POSTMAN WORKFLOWS FOR E2E API AUTOMATION TESTING\r\n\r\nif (pm.response.code==200) {\r\n    console.log(\"Login Successful\");\r\n    pm.execution.setNextRequest(\"GET ACCOUNT BALANCE\");\r\n}\r\nelse {\r\n    console.log(\"Login failure\");\r\n    pm.execution.setNextRequest(\"\");\r\n}"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"jsmith\",\n  \"password\": \"demo1234\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://demo.testfire.net/api/login",
+                  "protocol": "http",
+                  "host": [
+                    "demo",
+                    "testfire",
+                    "net"
+                  ],
+                  "path": [
+                    "api",
+                    "login"
+                  ]
+                },
+                "description": "After a successful login a token is returned. This is a Bearer token. To authenticate with it use the Authorization header and set value to Bearer empty space and the token value."
+              },
+              "response": [
+                {
+                  "name": "Success message when login is complete",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"jsmith\",\n  \"password\": \"demo1234\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/login",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "login"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "Bad parameters: Please check provided values",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"jsmith\",\n  \"password\": \"demo1234\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/login",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "login"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "Internal server error: Please see error message or logs for details",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"jsmith\",\n  \"password\": \"demo1234\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/login",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "login"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            },
+            {
+              "name": "GET ACCOUNT BALANCE",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Verify if response code=200 OK\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Verify if response time is < 2 seconds\", function () {\r\n    pm.expect(pm.response.responseTime).to.be.below(2000);\r\n});\r\n\r\npm.test(\"Verify if response body is received from server i.e., non-empty\", function () {\r\n    pm.response.to.have.body();\r\n});\r\n\r\npm.test(\"Verify if response body is in JSON format\", function () {\r\n    pm.response.to.have.header(\"Content-Type\", \"application/json\");\r\n});\r\n\r\npm.test(\"Verify if response body is valid\", function () {\r\n    pm.expect(pm.response.text()).to.include(\"accountId\");\r\n    pm.expect(pm.response.text()).to.include(\"balance\");\r\n});\r\n\r\npm.test.skip(\"Verify if response headers do not reveal project specific details\", function () {\r\n    pm.response.to.not.have.header(\"Server\");\r\n});\r\n\r\n// POSTMAN WORKFLOWS FOR E2E API AUTOMATION TESTING\r\n\r\nif (pm.response.code==200) {\r\n    console.log(\"Get account balance is successful\");\r\n    pm.execution.setNextRequest(\"TRANSFER FUNDS\");\r\n}\r\nelse {\r\n    console.log(\"Get account balance has failed\");\r\n    pm.execution.setNextRequest(\"\");\r\n}"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{varGlobalToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://demo.testfire.net/api/account/800002",
+                  "protocol": "http",
+                  "host": [
+                    "demo",
+                    "testfire",
+                    "net"
+                  ],
+                  "path": [
+                    "api",
+                    "account",
+                    "800002"
+                  ]
+                },
+                "description": "Returns details about a specific account"
+              },
+              "response": [
+                {
+                  "name": "Successful operation",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/account/:accountNo",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "account",
+                        ":accountNo"
+                      ],
+                      "variable": [
+                        {
+                          "key": "accountNo",
+                          "value": "string",
+                          "description": "Account id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "Unauthorized request",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/account/:accountNo",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "account",
+                        ":accountNo"
+                      ],
+                      "variable": [
+                        {
+                          "key": "accountNo",
+                          "value": "string",
+                          "description": "Account id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/account/:accountNo",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "account",
+                        ":accountNo"
+                      ],
+                      "variable": [
+                        {
+                          "key": "accountNo",
+                          "value": "string",
+                          "description": "Account id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            },
+            {
+              "name": "TRANSFER FUNDS",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Verify if response code=200 OK\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Verify if response time is < 2 seconds\", function () {\r\n    pm.expect(pm.response.responseTime).to.be.below(2000);\r\n});\r\n\r\npm.test(\"Verify if response body is received from server i.e., non-empty\", function () {\r\n    pm.response.to.have.body();\r\n});\r\n\r\npm.test(\"Verify if response body is in JSON format\", function () {\r\n    pm.response.to.have.header(\"Content-Type\", \"application/json\");\r\n});\r\n\r\npm.test(\"Verify if response body is valid\", function () {\r\n    pm.expect(pm.response.text()).to.include(\"success\");\r\n});\r\n\r\npm.test.skip(\"Verify if response headers do not reveal project specific details\", function () {\r\n    pm.response.to.not.have.header(\"Server\");\r\n});\r\n\r\n// POSTMAN WORKFLOWS FOR E2E API AUTOMATION TESTING\r\n\r\nif (pm.response.code==200) {\r\n    console.log(\"Transfer funds is successful\");\r\n    pm.execution.setNextRequest(\"LOGOUT\");\r\n}\r\nelse {\r\n    console.log(\"Transfer funds has failed\");\r\n    pm.execution.setNextRequest(\"\");\r\n}"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{varGlobalToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"toAccount\": \"800002\",\n  \"fromAccount\": \"800003\",\n  \"transferAmount\": \"{{$randomInt}}\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://demo.testfire.net/api/transfer",
+                  "protocol": "http",
+                  "host": [
+                    "demo",
+                    "testfire",
+                    "net"
+                  ],
+                  "path": [
+                    "api",
+                    "transfer"
+                  ]
+                },
+                "description": "Transfer money between two accounts"
+              },
+              "response": [
+                {
+                  "name": "Successful operation",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"toAccount\": \"800002\",\n  \"fromAccount\": \"800003\",\n  \"transferAmount\": \"200\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/transfer",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transfer"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "Bad parameters: Please check provided values",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"toAccount\": \"800002\",\n  \"fromAccount\": \"800003\",\n  \"transferAmount\": \"200\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/transfer",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transfer"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"toAccount\": \"800002\",\n  \"fromAccount\": \"800003\",\n  \"transferAmount\": \"200\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/transfer",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transfer"
+                      ]
+                    }
+                  },
+                  "status": "Not Implemented",
+                  "code": 501,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            },
+            {
+              "name": "LOGOUT",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Verify if response code=200 OK\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Verify if response time is < 2 seconds\", function () {\r\n    pm.expect(pm.response.responseTime).to.be.below(2000);\r\n});\r\n\r\npm.test(\"Verify if response body is received from server i.e., non-empty\", function () {\r\n    pm.response.to.have.body();\r\n});\r\n\r\npm.test(\"Verify if response body is in JSON format\", function () {\r\n    pm.response.to.have.header(\"Content-Type\", \"application/json\");\r\n});\r\n\r\npm.test(\"Verify if response body is valid\", function () {\r\n    var jsonData = pm.response.json();\r\n    pm.expect(jsonData.LoggedOut).to.eql(\"True\");\r\n});\r\n\r\npm.test.skip(\"Verify if response headers do not reveal project specific details\", function () {\r\n    pm.response.to.not.have.header(\"Server\");\r\n});\r\n\r\n// POSTMAN WORKFLOWS FOR E2E API AUTOMATION TESTING\r\n\r\nif (pm.response.code==200) {\r\n    console.log(\"Logout is successful\");\r\n    pm.execution.setNextRequest();\r\n}\r\nelse {\r\n    console.log(\"Logout has failed\");\r\n    pm.execution.setNextRequest(\"\");\r\n}"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{varGlobalToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://demo.testfire.net/api/logout",
+                  "protocol": "http",
+                  "host": [
+                    "demo",
+                    "testfire",
+                    "net"
+                  ],
+                  "path": [
+                    "api",
+                    "logout"
+                  ]
+                },
+                "description": "Logout from the bank"
+              },
+              "response": [
+                {
+                  "name": "Successful operation",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/logout",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "logout"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "Unauthorized request",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/logout",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "logout"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            }
+          ],
+          "description": "Login > View account details/balance > Transfer Funds > Logout"
+        },
+        {
+          "name": "USER JOURNEY#2",
+          "item": [
+            {
+              "name": "LOGIN",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Verify if response code=200 OK\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Verify if response time is < 2 seconds\", function () {\r\n    pm.expect(pm.response.responseTime).to.be.below(2000);\r\n});\r\n\r\npm.test(\"Verify if response body is received from server i.e., non-empty\", function () {\r\n    pm.response.to.have.body();\r\n});\r\n\r\npm.test(\"Verify if response body is in JSON format\", function () {\r\n    pm.response.to.have.header(\"Content-Type\", \"application/json\");\r\n});\r\n\r\npm.test(\"Verify if response body is valid\", function () {\r\n    pm.expect(pm.response.text()).to.include(\"Authorization\");\r\n    pm.expect(pm.response.text()).to.include(\"success\");\r\n});\r\n\r\npm.test.skip(\"Verify if response headers do not reveal project specific details\", function () {\r\n    pm.response.to.not.have.header(\"Server\");\r\n});\r\n\r\n// API CHAINING TESTING\r\n\r\nvarExtractedResponse = pm.response.json();\r\nvarToken = varExtractedResponse.Authorization;\r\npm.globals.set(\"varGlobalToken\", varToken);\r\n\r\n//OR\r\n// pm.globals.set(\"varGlobalToken\", pm.response.json().Authorization);\r\n\r\n// POSTMAN WORKFLOWS FOR E2E API AUTOMATION TESTING\r\n\r\nif (pm.response.code==200) {\r\n    console.log(\"Login Successful\");\r\n    pm.execution.setNextRequest(\"SUBMIT FEEDBACK\");\r\n}\r\nelse {\r\n    console.log(\"Login failure\");\r\n    pm.execution.setNextRequest(\"\");\r\n}"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"jsmith\",\n  \"password\": \"demo1234\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://demo.testfire.net/api/login",
+                  "protocol": "http",
+                  "host": [
+                    "demo",
+                    "testfire",
+                    "net"
+                  ],
+                  "path": [
+                    "api",
+                    "login"
+                  ]
+                },
+                "description": "After a successful login a token is returned. This is a Bearer token. To authenticate with it use the Authorization header and set value to Bearer empty space and the token value."
+              },
+              "response": [
+                {
+                  "name": "Success message when login is complete",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"jsmith\",\n  \"password\": \"demo1234\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/login",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "login"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "Bad parameters: Please check provided values",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"jsmith\",\n  \"password\": \"demo1234\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/login",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "login"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "Internal server error: Please see error message or logs for details",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"jsmith\",\n  \"password\": \"demo1234\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/login",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "login"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            },
+            {
+              "name": "SUBMIT FEEDBACK",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Verify if response code=200 OK\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Verify if response time is < 2 seconds\", function () {\r\n    pm.expect(pm.response.responseTime).to.be.below(2000);\r\n});\r\n\r\npm.test(\"Verify if response body is received from server i.e., non-empty\", function () {\r\n    pm.response.to.have.body();\r\n});\r\n\r\npm.test(\"Verify if response body is in JSON format\", function () {\r\n    pm.response.to.have.header(\"Content-Type\", \"application/json\");\r\n});\r\n\r\npm.test(\"Verify if response body is valid\", function () {\r\n    pm.expect(pm.response.text()).to.include(\"name\");\r\n    pm.expect(pm.response.text()).to.include(\"email\");\r\n    pm.expect(pm.response.text()).to.include(\"subject\");\r\n    pm.expect(pm.response.text()).to.include(\"comments\");\r\n});\r\n\r\npm.test.skip(\"Verify if response headers do not reveal project specific details\", function () {\r\n    pm.response.to.not.have.header(\"Server\");\r\n});\r\n\r\n// POSTMAN WORKFLOWS FOR E2E API AUTOMATION TESTING\r\n\r\nif (pm.response.code==200) {\r\n    console.log(\"Submit feedback is successful\");\r\n    pm.execution.setNextRequest(\"LOGOUT\");\r\n}\r\nelse {\r\n    console.log(\"Submit feedback has failure\");\r\n    pm.execution.setNextRequest(\"\");\r\n}"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{varGlobalToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": ""
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"J Smith\",\n  \"email\": \"jsmtih@altoromutual.com\",\n  \"subject\": \"Amazing web design\",\n  \"message\": \"I like the new look of your applicaiton\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://demo.testfire.net/api/feedback/submit",
+                  "protocol": "http",
+                  "host": [
+                    "demo",
+                    "testfire",
+                    "net"
+                  ],
+                  "path": [
+                    "api",
+                    "feedback",
+                    "submit"
+                  ]
+                },
+                "description": "Submit feedback for the bank"
+              },
+              "response": [
+                {
+                  "name": "Successful operation",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"J Smith\",\n  \"email\": \"jsmtih@altoromutual.com\",\n  \"subject\": \"Amazing web design\",\n  \"message\": \"I like the new look of your applicaiton\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/feedback/submit",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "feedback",
+                        "submit"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "Unauthorized request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"J Smith\",\n  \"email\": \"jsmtih@altoromutual.com\",\n  \"subject\": \"Amazing web design\",\n  \"message\": \"I like the new look of your applicaiton\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/feedback/submit",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "feedback",
+                        "submit"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"J Smith\",\n  \"email\": \"jsmtih@altoromutual.com\",\n  \"subject\": \"Amazing web design\",\n  \"message\": \"I like the new look of your applicaiton\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/feedback/submit",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "feedback",
+                        "submit"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            },
+            {
+              "name": "LOGOUT",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Verify if response code=200 OK\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Verify if response time is < 2 seconds\", function () {\r\n    pm.expect(pm.response.responseTime).to.be.below(2000);\r\n});\r\n\r\npm.test(\"Verify if response body is received from server i.e., non-empty\", function () {\r\n    pm.response.to.have.body();\r\n});\r\n\r\npm.test(\"Verify if response body is in JSON format\", function () {\r\n    pm.response.to.have.header(\"Content-Type\", \"application/json\");\r\n});\r\n\r\npm.test(\"Verify if response body is valid\", function () {\r\n    var jsonData = pm.response.json();\r\n    pm.expect(jsonData.LoggedOut).to.eql(\"True\");\r\n});\r\n\r\npm.test.skip(\"Verify if response headers do not reveal project specific details\", function () {\r\n    pm.response.to.not.have.header(\"Server\");\r\n});\r\n\r\n// POSTMAN WORKFLOWS FOR E2E API AUTOMATION TESTING\r\n\r\nif (pm.response.code==200) {\r\n    console.log(\"Logout is successful\");\r\n    pm.execution.setNextRequest();\r\n}\r\nelse {\r\n    console.log(\"Logout has failed\");\r\n    pm.execution.setNextRequest(\"\");\r\n}"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{varGlobalToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://demo.testfire.net/api/logout",
+                  "protocol": "http",
+                  "host": [
+                    "demo",
+                    "testfire",
+                    "net"
+                  ],
+                  "path": [
+                    "api",
+                    "logout"
+                  ]
+                },
+                "description": "Logout from the bank"
+              },
+              "response": [
+                {
+                  "name": "Successful operation",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/logout",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "logout"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                },
+                {
+                  "name": "Unauthorized request",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/logout",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "logout"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            }
+          ],
+          "description": "Login > Submit Feedback > Logout"
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "/api"
+    }
+  ]
+}

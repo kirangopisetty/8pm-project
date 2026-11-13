@@ -1,0 +1,715 @@
+{
+  "info": {
+    "_postman_id": "a452e2b8-0102-4ad3-95ec-93707ee56b13",
+    "name": "AltoroJ REST API-AI generated",
+    "description": "AltoroJ REST API collection generated from Swagger spec at https://demo.testfire.net/swagger/properties.json. Contains endpoints for Login, Account management, Fund Transfer, Feedback, Admin operations, and Logout.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "5040522",
+    "_collection_link": "https://go.postman.co/collection/5040522-a452e2b8-0102-4ad3-95ec-93707ee56b13?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "1. Login",
+      "item": [
+        {
+          "name": "POST /login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test(\"Response time is less than 5000ms\", function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});",
+                  "pm.test(\"Response has a body\", function () {",
+                  "    pm.response.to.have.body;",
+                  "});",
+                  "pm.test(\"Content-Type is application/json\", function () {",
+                  "    pm.response.to.have.header(\"Content-Type\");",
+                  "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+                  "});",
+                  "// Save token for subsequent requests",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData && jsonData.token) {",
+                  "    pm.collectionVariables.set(\"authToken\", jsonData.token);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"jsmith\",\n  \"password\": \"demo1234\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "login"
+              ]
+            },
+            "description": "Login method"
+          },
+          "response": []
+        },
+        {
+          "name": "GET /login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200 or 401\", function () {",
+                  "    pm.expect(pm.response.code).to.be.oneOf([200, 401]);",
+                  "});",
+                  "pm.test(\"Response time is less than 5000ms\", function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});",
+                  "pm.test(\"Response has a body\", function () {",
+                  "    pm.response.to.have.body;",
+                  "});",
+                  "pm.test(\"Content-Type is application/json\", function () {",
+                  "    pm.response.to.have.header(\"Content-Type\");",
+                  "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "login"
+              ]
+            },
+            "description": "Check if any user is logged in"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "2. Account",
+      "item": [
+        {
+          "name": "GET /account",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test(\"Response time is less than 5000ms\", function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});",
+                  "pm.test(\"Response has a body\", function () {",
+                  "    pm.response.to.have.body;",
+                  "});",
+                  "pm.test(\"Content-Type is application/json\", function () {",
+                  "    pm.response.to.have.header(\"Content-Type\");",
+                  "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+                  "});",
+                  "pm.test(\"Response is an array or object\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.be.oneOf([Array.isArray(jsonData) ? jsonData : null, typeof jsonData === 'object' ? jsonData : null].filter(Boolean));",
+                  "});",
+                  "// Save first account number for subsequent requests",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData && jsonData.accounts && jsonData.accounts.length > 0) {",
+                  "    pm.collectionVariables.set(\"accountNo\", jsonData.accounts[0].accountNo || jsonData.accounts[0]);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/account",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "account"
+              ]
+            },
+            "description": "Get all accounts"
+          },
+          "response": []
+        },
+        {
+          "name": "GET /account/{accountNo}",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test(\"Response time is less than 5000ms\", function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});",
+                  "pm.test(\"Response has a body\", function () {",
+                  "    pm.response.to.have.body;",
+                  "});",
+                  "pm.test(\"Content-Type is application/json\", function () {",
+                  "    pm.response.to.have.header(\"Content-Type\");",
+                  "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+                  "});",
+                  "pm.test(\"Response body is an object\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.be.an('object');",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/account/{{accountNo}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "account",
+                "{{accountNo}}"
+              ]
+            },
+            "description": "Get account balance"
+          },
+          "response": []
+        },
+        {
+          "name": "GET /account/{accountNo}/transactions",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test(\"Response time is less than 5000ms\", function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});",
+                  "pm.test(\"Response has a body\", function () {",
+                  "    pm.response.to.have.body;",
+                  "});",
+                  "pm.test(\"Content-Type is application/json\", function () {",
+                  "    pm.response.to.have.header(\"Content-Type\");",
+                  "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/account/{{accountNo}}/transactions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "account",
+                "{{accountNo}}",
+                "transactions"
+              ]
+            },
+            "description": "Get last 10 transactions"
+          },
+          "response": []
+        },
+        {
+          "name": "POST /account/{accountNo}/transactions",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test(\"Response time is less than 5000ms\", function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});",
+                  "pm.test(\"Response has a body\", function () {",
+                  "    pm.response.to.have.body;",
+                  "});",
+                  "pm.test(\"Content-Type is application/json\", function () {",
+                  "    pm.response.to.have.header(\"Content-Type\");",
+                  "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"startDate\": \"2012-03-12\",\n  \"endDate\": \"2012-03-17\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/account/{{accountNo}}/transactions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "account",
+                "{{accountNo}}",
+                "transactions"
+              ]
+            },
+            "description": "Get transactions by date range"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "3. Transfer",
+      "item": [
+        {
+          "name": "POST /transfer",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test(\"Response time is less than 5000ms\", function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});",
+                  "pm.test(\"Response has a body\", function () {",
+                  "    pm.response.to.have.body;",
+                  "});",
+                  "pm.test(\"Content-Type is application/json\", function () {",
+                  "    pm.response.to.have.header(\"Content-Type\");",
+                  "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"toAccount\": \"800002\",\n  \"fromAccount\": \"800003\",\n  \"transferAmount\": \"200\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/transfer",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "transfer"
+              ]
+            },
+            "description": "Transfer money"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "4. Feedback",
+      "item": [
+        {
+          "name": "POST /feedback/submit",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test(\"Response time is less than 5000ms\", function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});",
+                  "pm.test(\"Response has a body\", function () {",
+                  "    pm.response.to.have.body;",
+                  "});",
+                  "pm.test(\"Content-Type is application/json\", function () {",
+                  "    pm.response.to.have.header(\"Content-Type\");",
+                  "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+                  "});",
+                  "// Save feedback ID for GET request",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData && jsonData.feedbackId) {",
+                  "    pm.collectionVariables.set(\"feedbackId\", jsonData.feedbackId);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"J Smith\",\n  \"email\": \"jsmtih@altoromutual.com\",\n  \"subject\": \"Amazing web design\",\n  \"message\": \"I like the new look of your applicaiton\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/feedback/submit",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "feedback",
+                "submit"
+              ]
+            },
+            "description": "Submit feedback"
+          },
+          "response": []
+        },
+        {
+          "name": "GET /feedback/{feedbackId}",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test(\"Response time is less than 5000ms\", function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});",
+                  "pm.test(\"Response has a body\", function () {",
+                  "    pm.response.to.have.body;",
+                  "});",
+                  "pm.test(\"Content-Type is application/json\", function () {",
+                  "    pm.response.to.have.header(\"Content-Type\");",
+                  "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+                  "});",
+                  "pm.test(\"Response body is an object\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.be.an('object');",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/feedback/{{feedbackId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "feedback",
+                "{{feedbackId}}"
+              ]
+            },
+            "description": "Retrieve feedback"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "5. Admin",
+      "item": [
+        {
+          "name": "POST /admin/addUser",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test(\"Response time is less than 5000ms\", function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});",
+                  "pm.test(\"Response has a body\", function () {",
+                  "    pm.response.to.have.body;",
+                  "});",
+                  "pm.test(\"Content-Type is application/json\", function () {",
+                  "    pm.response.to.have.header(\"Content-Type\");",
+                  "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstname\": \"Bilbo\",\n  \"lastname\": \"Baggins\",\n  \"username\": \"bilbob\",\n  \"password1\": \"S3l3ctS0methingStr0ng5AsP@ssword\",\n  \"password2\": \"S3l3ctS0methingStr0ng5AsP@ssword\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/admin/addUser",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "addUser"
+              ]
+            },
+            "description": "Add new user"
+          },
+          "response": []
+        },
+        {
+          "name": "POST /admin/changePassword",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test(\"Response time is less than 5000ms\", function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});",
+                  "pm.test(\"Response has a body\", function () {",
+                  "    pm.response.to.have.body;",
+                  "});",
+                  "pm.test(\"Content-Type is application/json\", function () {",
+                  "    pm.response.to.have.header(\"Content-Type\");",
+                  "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{authToken}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"jdoe\",\n  \"password1\": \"Th1s!sz3nu3Passv0rd\",\n  \"password2\": \"Th1s!sz3nu3Passv0rd\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/admin/changePassword",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "admin",
+                "changePassword"
+              ]
+            },
+            "description": "Change user password"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "6. Logout",
+      "item": [
+        {
+          "name": "GET /logout",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test(\"Response time is less than 5000ms\", function () {",
+                  "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+                  "});",
+                  "pm.test(\"Response has a body\", function () {",
+                  "    pm.response.to.have.body;",
+                  "});",
+                  "pm.test(\"Content-Type is application/json\", function () {",
+                  "    pm.response.to.have.header(\"Content-Type\");",
+                  "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+                  "});",
+                  "// Clear auth token on logout",
+                  "pm.collectionVariables.set(\"authToken\", \"\");"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/logout",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "logout"
+              ]
+            },
+            "description": "Logout"
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://demo.testfire.net/api"
+    },
+    {
+      "key": "authToken",
+      "value": ""
+    },
+    {
+      "key": "accountNo",
+      "value": "800002"
+    },
+    {
+      "key": "feedbackId",
+      "value": ""
+    }
+  ]
+}

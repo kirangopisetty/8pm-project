@@ -1,0 +1,228 @@
+{
+  "info": {
+    "_postman_id": "f4e72f0b-224a-4482-be07-a106122c037b",
+    "name": "CURA Healthcare - E2E Flow-AI generated",
+    "description": "End-to-end flow for CURA Healthcare demo application.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "5040522",
+    "_collection_link": "https://go.postman.co/collection/5040522-f4e72f0b-224a-4482-be07-a106122c037b?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Login",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response time is less than 5000ms\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+              "});",
+              "",
+              "pm.test(\"Content-Type is text/html\", function () {",
+              "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"text/html\");",
+              "});",
+              "",
+              "pm.test(\"Login successful - Make Appointment button present\", function () {",
+              "    pm.expect(pm.response.text()).to.include(\"btn-make-appointment\");",
+              "});",
+              "",
+              "pm.test(\"Login successful - Logout option visible in menu\", function () {",
+              "    pm.expect(pm.response.text()).to.include(\"authenticate.php?logout\");",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/x-www-form-urlencoded"
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "username",
+              "value": "John Doe"
+            },
+            {
+              "key": "password",
+              "value": "ThisIsNotAPassword"
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://katalon-demo-cura.herokuapp.com/authenticate.php",
+          "protocol": "https",
+          "host": [
+            "katalon-demo-cura",
+            "herokuapp",
+            "com"
+          ],
+          "path": [
+            "authenticate.php"
+          ]
+        },
+        "description": "Authenticates the user with valid credentials."
+      },
+      "response": []
+    },
+    {
+      "name": "Book Appointment",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response time is less than 5000ms\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+              "});",
+              "",
+              "pm.test(\"Content-Type is text/html\", function () {",
+              "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"text/html\");",
+              "});",
+              "",
+              "pm.test(\"Appointment Confirmation page is displayed\", function () {",
+              "    pm.expect(pm.response.text()).to.include(\"Appointment Confirmation\");",
+              "});",
+              "",
+              "pm.test(\"Correct facility is confirmed - Tokyo CURA Healthcare Center\", function () {",
+              "    pm.expect(pm.response.text()).to.include(\"Tokyo CURA Healthcare Center\");",
+              "});",
+              "",
+              "pm.test(\"Hospital readmission is confirmed - Yes\", function () {",
+              "    pm.expect(pm.response.text()).to.include(\"Yes\");",
+              "});",
+              "",
+              "pm.test(\"Healthcare program is confirmed - Medicare\", function () {",
+              "    pm.expect(pm.response.text()).to.include(\"Medicare\");",
+              "});",
+              "",
+              "pm.test(\"Visit date is confirmed\", function () {",
+              "    pm.expect(pm.response.text()).to.include(\"12/11/2026\");",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/x-www-form-urlencoded"
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "facility",
+              "value": "Tokyo CURA Healthcare Center"
+            },
+            {
+              "key": "hospital_readmission",
+              "value": "Yes"
+            },
+            {
+              "key": "programs",
+              "value": "Medicare"
+            },
+            {
+              "key": "visit_date",
+              "value": "12/11/2026"
+            },
+            {
+              "key": "comment",
+              "value": "Test appointment booking"
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://katalon-demo-cura.herokuapp.com/appointment.php",
+          "protocol": "https",
+          "host": [
+            "katalon-demo-cura",
+            "herokuapp",
+            "com"
+          ],
+          "path": [
+            "appointment.php"
+          ]
+        },
+        "description": "Books an appointment with all valid fields filled in."
+      },
+      "response": []
+    },
+    {
+      "name": "Logout",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response time is less than 5000ms\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+              "});",
+              "",
+              "pm.test(\"Content-Type is text/html\", function () {",
+              "    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"text/html\");",
+              "});",
+              "",
+              "pm.test(\"Logout successful - Login link visible in menu\", function () {",
+              "    pm.expect(pm.response.text()).to.include(\"profile.php#login\");",
+              "});",
+              "",
+              "pm.test(\"Logout successful - Logout option no longer in menu\", function () {",
+              "    pm.expect(pm.response.text()).to.not.include(\"authenticate.php?logout\");",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://katalon-demo-cura.herokuapp.com/authenticate.php?logout",
+          "protocol": "https",
+          "host": [
+            "katalon-demo-cura",
+            "herokuapp",
+            "com"
+          ],
+          "path": [
+            "authenticate.php"
+          ],
+          "query": [
+            {
+              "key": "logout",
+              "value": ""
+            }
+          ]
+        },
+        "description": "Logs out the user by terminating the session via the sidebar menu logout link."
+      },
+      "response": []
+    }
+  ]
+}
